@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="//unpkg.com/react/umd/react.development.js"></script>
+    <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script type="text/jsx">
+        class ButtonClickCounterComponent extends React.Component {
+            constructor(props)
+            {
+                super(props);
+                this.state= {count : 0 };
+            }
+            incrementClick() {
+                this.setState({count : this.state.count + 1 });
+            }
+
+            render(){
+                return( 
+                    <div>Count : {this.state.count} 
+                    <button type="button" onClick={ this.incrementClick.bind(this)}>Increment Count </button></div>
+                );
+            }
+           
+        };
+
+        ReactDOM.render(<ButtonClickCounterComponent />, document.getElementById('container'));
+    </script>
+  </body>
+</html>

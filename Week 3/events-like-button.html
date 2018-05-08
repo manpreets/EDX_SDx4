@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="//unpkg.com/react/umd/react.development.js"></script>
+    <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+      <div id="container"></div>
+      <script type="text/jsx">
+        class ComponentLikeUnlike extends React.Component{
+            //Constructor
+            constructor(props){
+                super(props);
+                this.state = { liked : false};
+            }
+            //Click action
+            toggle(){
+                this.setState({liked : !this.state.liked});
+            }
+
+            //Render
+            render(){
+                var name = this.props.name;
+                var bSize = (this.state.liked)?16:12;
+                var bColor = (this.state.liked)?'green':'red';
+                var txt = this.state.liked ? 'Unlike' : 'Like';
+                return( <p>
+                            <span style={{fontSize:bSize, color:bColor}}>{name}</span>
+                            <span onClick={this.toggle.bind(this)}>{'\ud83d\udc4d' + txt} </span>
+                        </p>
+                );
+            }
+        }
+
+        //ReactDOM render
+        ReactDOM.render(
+                        <div>
+                            <ComponentLikeUnlike name="Java" />
+                            <ComponentLikeUnlike name="JavaScript" />
+                        </div>,
+                        document.getElementById('container')
+        );       
+    
+      </script>
+  </body>
+</html>
+
+

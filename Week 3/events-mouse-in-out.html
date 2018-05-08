@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello World</title>
+        <script src="//unpkg.com/react/umd/react.development.js"></script>
+        <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+
+    <body>
+        <div id="container" ></div>
+        <script type="text/jsx">
+            class LookAtMeComponent extends React.Component{
+                //Constructor
+                constructor(props){
+                    super(props);
+                    this.state = {bold:false, color:'black'};                    
+                }
+
+                //Callback functions
+                handleMouseOut(){
+                    this.setState({bold:false});
+                }
+
+                handleMouseOver(){
+                    this.setState({bold:true});
+                }
+
+                handleMouseClick(){
+                    this.setState({color:(this.state.color=='red')?'black':'red'});
+                }
+                //Render
+                render(){
+                    
+                        var fColor = this.state.color;
+                        var fWeight = this.state.bold?'bold':'normal';
+
+                        return( <span style={{color:fColor, fontWeight:fWeight}} onMouseOver={this.handleMouseOver.bind(this)} onMouseOut={this.handleMouseOut.bind(this)} onClick={this.handleMouseClick.bind(this)}>{this.props.text}</span>   
+                    );                     
+                }
+            }
+
+            //ReactDOM render
+            ReactDOM.render(
+                <div>
+                    <LookAtMeComponent text="Lood at me!"/>
+                </div>,
+                document.getElementById('container')                      
+            );
+        </script>
+    </body>
+
+</html>

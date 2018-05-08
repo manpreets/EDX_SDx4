@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EDX SD4x - 3.1 - Intro to React</title>
+    <script src="//unpkg.com/react/umd/react.development.js"></script>
+    <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="viewCounter"></div>
+
+    <script type="text/jsx">
+        class ViewCounterComponent extends React.Component{
+            //Component created. props is optionnal but if declared then super(props) must be added as first expression in the constructor
+            constructor(props){
+                //super() gets the prototype of props from parent class(React.Component)
+                super(props);
+                
+                //Initialize the count
+                let timesViewed = 0;
+                
+                //check the localStorage if count is registered before
+                if(localStorage.timesViewed)
+                {
+                    //Store count into local storage
+                    timesViewed = localStorage.timesViewed;
+                }
+                //incremment the count
+                timesViewed++;  
+                //save count into localStoreate too
+                localStorage.timesViewed = timesViewed;
+                //copy count into state as well for rendering
+                this.state = { numViews: timesViewed };
+            }
+            
+            render(){
+                //this will send the output
+                return <b>Count : {this.state.numViews} </b>;
+            }
+            
+        }
+
+        //Use ReactDOM.render(<COMPONENT_NAME />, target element)
+        ReactDOM.render(<ViewCounterComponent />,
+                        document.getElementById('viewCounter')
+        );
+    </script>
+</body>
+
+</html>
