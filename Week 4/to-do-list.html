@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="//unpkg.com/react/umd/react.development.js"></script>
+    <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/jsx">
+
+      class MyComponent extends React.Component {
+         constructor(props) {
+            super(props);
+            var prop1 = "World";
+            this.state = { stateProp1: prop1 };
+         }
+
+         render() {
+           return <b>Hello, {this.state.stateProp1  }!</b>;
+         }
+      }
+
+      ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('container')
+      );
+
+    </script>
+  </body>
+</html>
