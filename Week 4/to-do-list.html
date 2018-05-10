@@ -11,20 +11,43 @@
     <div id="container"></div>
     <script type="text/jsx">
 
-      class MyComponent extends React.Component {
+      class FilterdList extends React.Component {
          constructor(props) {
             super(props);
-            var prop1 = "World";
-            this.state = { stateProp1: prop1 };
+            var listItems = ['ant', 'gant', 'flower', 'bear', 'cat', 'elephant'];
+            this.state = { initialItems: listItems,
+                            currentItems:listItems  };
+            findItems(e)
+            {
+              var updatedList = this.state.initialItems;
+
+              updatedList = updatedList.filter(function(item)
+              {
+                  return item.search(e.target.text) !== -1;
+              });
+              
+              this.setState({currentItems:updatedList});
+            }
+            
          }
 
          render() {
-           return <b>Hello, {this.state.stateProp1  }!</b>;
+           return <input type='text' placeholder='filter' onChange={this.findItems.bind(this)} />
+           <ListItems items={this.state.currentItems};
          }
       }
 
+      class ListItems extends React.Component{
+          return(<ul> {this.props.items.map(function(item)
+          {
+              <li key={item}>{item}</li>
+          } </ul>} );
+      }
+
+
+
       ReactDOM.render(
-        <MyComponent />,
+        <FilterdList />,
         document.getElementById('container')
       );
 
