@@ -32,18 +32,21 @@
          }
 
          render() {
-           return <input type='text' placeholder='filter' onChange={this.findItems.bind(this)} />
-           <ListItems items={this.state.currentItems};
+           return(<div>
+              <input type='text' placeholder='filter' onChange={this.findItems.bind(this)} />
+              <ListItems items={this.state.currentItems} />
+           </div>);
          }
       }
 
       class ListItems extends React.Component{
-          return(<ul> {this.props.items.map(function(item)
+        render(){
+          return(<ul> { this.props.items.map(function(item)
           {
-              <li key={item}>{item}</li>
-          } </ul>} );
+             return <li key={item}>{item}</li>
+          } ) } </ul> )
+        }
       }
-
 
 
       ReactDOM.render(
