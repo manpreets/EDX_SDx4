@@ -15,29 +15,46 @@
             constructor(props) {
             super(props);
 
-            this.state = { input1: 0, input2=0, total=0, };
+            this.state = { input1: 0, input2:0, total:0, };
             this.multiply = this.multiply.bind(this);
             }
 
             multiply(inputId, inputVal)
             {
-                if(in)
+                if(inputId=='1')
+                {
+                    this.setState({input1:inputVal, total:(inputVal * this.state.input2)});
+                }
+                else
+                {
+                    this.setState({input2:inputVal, total:(inputVal * this.state.input1)});
+                }
             }
 
             render() {
-            return <b>Hello, {this.state.stateProp1  }!</b>;
+                return <div>
+                    <MultiplierInput inputChange={this.multiply} id='1' /> 
+                    <MultiplierInput inputChange={this.multiply} id='2' />
+                    <MultiplierOutput product={this.state.total} />
+                </div>;
+
             }
         }
 
         class MultiplierInput extends React.Component {
             constructor(props) {
             super(props);
-            var prop1 = "World";
-            this.state = { stateProp1: prop1 };
+            this.handleInputChange = this.handleInputChange.bind(this);
+        }
+            
+            handleInputChange(e)
+            {
+                let inputValNum = Number(e.target.value);
+                this.props.inputChange(this.props.id, inputValNum);
             }
 
             render() {
-            return <b>Hello, {this.state.stateProp1  }!</b>;
+            return <input onChange={this.handleInputChange} />;
             }
         }
 
@@ -47,7 +64,7 @@
             }
 
             render() {
-            return <span> {this.props.input1Val} * {input.props.inputVal2} = {this.props.totalVal} </span>;
+            return <p> Total product is :  {this.props.product} </p>;
             }
         }
 
