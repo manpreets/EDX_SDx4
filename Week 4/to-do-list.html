@@ -17,23 +17,23 @@
             var listItems = ['ant', 'gant', 'flower', 'bear', 'cat', 'elephant'];
             this.state = { initialItems: listItems,
                             currentItems:listItems  };
-            findItems(e)
-            {
-              var updatedList = this.state.initialItems;
+          }
 
-              updatedList = updatedList.filter(function(item)
-              {
-                  return item.search(e.target.text) !== -1;
-              });
-              
-              this.setState({currentItems:updatedList});
-            }
+          filterList(input)
+          {
+            var updatedList = this.state.initialItems;
+
+            updatedList = updatedList.filter(function(item){
+                return item.search(input.target.value) !== -1;
+            });
             
-         }
+            this.setState({currentItems:updatedList});
+          }            
+         
 
          render() {
            return(<div>
-              <input type='text' placeholder='filter' onChange={this.findItems.bind(this)} />
+              <input type='text' placeholder='filter' onChange={this.filterList.bind(this)} />
               <ListItems items={this.state.currentItems} />
            </div>);
          }
@@ -41,18 +41,68 @@
 
       class ListItems extends React.Component{
         render(){
-          return(<ul> { this.props.items.map(function(item)
-          {
-             return <li key={item}>{item}</li>
-          } ) } </ul> )
+          return(<ul>{ 
+            this.props.items.map(function(item)
+            {
+              return <li key={item}>{item}</li>
+            }) 
+          } </ul> )
         }
       }
 
 
-      ReactDOM.render(
-        <FilterdList />,
-        document.getElementById('container')
-      );
+      ReactDOM.render(<FilterdList />, document.getElementById('container'));
+
+    </script>
+<!-- Original code -->
+
+    <div id='containerOriginal'></div>
+
+    <script type="text/jsx">
+
+class FilteredListOriginal extends React.Component { 
+
+  constructor(props) {
+  super(props);
+  var allItems = [ "anteater", "bear", "cat", "dog", "elephant", "fox" ];
+  this.state = { initialItems: allItems, currentItems: allItems }; 
+  }
+
+  filterList(input){ 
+  var updatedList = this.state.initialItems; 
+  updatedList = updatedList.filter(function(item){ 
+                return item.search(input.target.value) !== -1; 
+              }); 
+  this.setState({currentItems: updatedList}); 
+  } 
+
+
+  render(){ 
+    return ( 
+      <div> 
+        <input type="text" placeholder="Filter" onChange={this.filterList.bind(this)}/> 
+        <ListOriginal items={this.state.currentItems}/> 
+      </div> 
+    ); 
+  } 
+}; 
+
+class ListOriginal extends React.Component { 
+  render(){ 
+    return ( 
+      <ul> { 
+        this.props.items.map(function(item) { 
+        return <li key={item}>{item}</li> }) 
+      }
+      </ul> 
+    ) 
+  } 
+}; 
+
+//ReactDOM.render(<FilteredListOriginal />, document.getElementById('containerOriginal'));
+
+
+
 
     </script>
   </body>
