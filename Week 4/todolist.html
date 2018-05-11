@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="//unpkg.com/react/umd/react.development.js"></script>
+    <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/jsx">
+
+    class ToDoAppComponent extends React.Component {
+      constructor(props) {
+          super(props);
+          this.state = { itemsList:[], text:'', id:0 };
+      }
+      
+      handleTextEntered(e)
+      {
+        this.setState({text : e.target.value});
+      }
+
+      handleSubmit(e)
+      {
+        e.preventDefault();
+
+        //create new item
+          var thisItem ={id:this.state.id, text:this.state.text};
+        //add a new
+          this.setState({itemsList:this.state.itemsList.concat(thisItem),
+                          id:this.state.id + 1,
+                          text:''            
+          });
+      }
+
+      render() {
+        return <div>
+          <h3>To Do List</h3>
+          <ToDoListComponent items={this.state.itemsList} />
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <input onChange={this.handleTextEntered.bind(this)} type='text' placeholder='type here' value={this.state.text} />
+            <button>Add item </button>
+          </form>  
+        </div>;
+      }
+    }
+
+    class ToDoListComponent extends React.Component {
+      constructor(props) {
+          super(props);
+      }
+
+      render() {
+        return this.props.items.map((item)=> 
+          <ToDoListItemComponent id={item.id} key={item.id} text={item.text} /> 
+        );
+      }
+    }
+
+    class ToDoListItemComponent extends React.Component {
+      constructor(props) {
+          super(props);
+          this.state = { amDone:false};
+      }
+
+      toggleAmDone()
+      {
+        this.setState({amDone:!this.state.amDone})
+      }
+
+      render() {
+        var textDec= this.state.amDone? 'line-through':'none';
+        return <li style={{textDecoration:textDec}} onClick={this.toggleAmDone.bind(this)} key={this.props.id}>   {this.props.text}
+        </li>;
+      }
+    }
+
+      ReactDOM.render(
+        <ToDoAppComponent />,
+        document.getElementById('container')
+      );
+
+    </script>
+  </body>
+</html>
