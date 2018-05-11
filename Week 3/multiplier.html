@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="//unpkg.com/react/umd/react.development.js"></script>
+    <script src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/jsx">
+
+        class MultiplierApp extends React.Component {
+            constructor(props) {
+            super(props);
+
+            this.state = { input1: 0, input2=0, total=0, };
+            this.multiply = this.multiply.bind(this);
+            }
+
+            multiply(inputId, inputVal)
+            {
+                if(in)
+            }
+
+            render() {
+            return <b>Hello, {this.state.stateProp1  }!</b>;
+            }
+        }
+
+        class MultiplierInput extends React.Component {
+            constructor(props) {
+            super(props);
+            var prop1 = "World";
+            this.state = { stateProp1: prop1 };
+            }
+
+            render() {
+            return <b>Hello, {this.state.stateProp1  }!</b>;
+            }
+        }
+
+        class MultiplierOutput extends React.Component {
+            constructor(props) {
+            super(props);
+            }
+
+            render() {
+            return <span> {this.props.input1Val} * {input.props.inputVal2} = {this.props.totalVal} </span>;
+            }
+        }
+
+        ReactDOM.render(
+            <MultiplierApp />,
+            document.getElementById('container')
+        );
+
+    </script>
+  </body>
+</html>
