@@ -13,31 +13,84 @@
     <script type="text/jsx">
 
         //Setup data in this component
-        class ArticlesGrid extends React.Component {
+        class ArticlesGrid extends React.Component 
+        {
             constructor(props) {
                 super(props);
-                const api_key='79fa6f3884334187b1673328ab07e4f6';
-                var prop1 = "World";
-                this.state = { stateProp1: prop1 };
+                this.state = {articlesState: []};
             }
 
-            render(){
-                return <div on>
-            }
-            
 
             //get the data from api_key when component is mounted
-            
-            
-            //parse the data by firstly checking if it's vallid 
-
-            render() {
-                return <b>Hello, {this.state.stateProp1  }!</b>;
+            componentDidMount () {
+            var API_KEY = '79fa6f3884334187b1673328ab07e4f6'; // replace this with the API key you obtained from https://developer.nytimes.com/
+            var query = location.search ? (location.search.split('?q=')[1]).split('&')[0] : 'all';
+            var url=
+                'http://api.nytimes.com/svc/search/v2/articlesearch.json?q=' + query + '&api-key=' + API_KEY;
+            $.getJSON(url, function(data, status) {
+                                return this.setState({articlesState: this.parse(data)});
+                            }.bind(this));
             }
+            
+            //parse the data by firstly checking if it's valid
+            parse(results){
+                if(!results || !results.response) return [];
+
+                var articles = results.response.docs;
+                var articlesWithImages=[];
+
+                //go through all the artlices and find valid ones
+                for(let i=0; i< articles.length; i++)
+                {
+                    var thisArticle = articles[i];
+                    if(thisArticle.multimedia.find(this.checkXLarge)){
+                        articlesWithImages.push(
+                        {
+                            id: thisArticle.id,
+                            title: thisArticle.headline.main||'Untitled',
+                            imageURL: thisArticle.multimedia.find(this.checkXLarge).url || '#',
+                            webURL : thisArticle.web_url || '#',
+                            snippet : thisArticle.snippet || ''
+                        });
+                    }
+                }
+                return articlesWithImages;
+            }
+            
+            checkXLarge(image)
+            {
+                return image.subtype === 'xlarge';
+            }
+
+
+            render () {
+                return this.state.articlesState && (
+                    <div className='articles'>
+                    { this.state.articlesState.map(function(article){
+                        return <ArticleComponent article={article} key={article._id} />;
+                    })}
+                    </div>
+                );
+            }
+
+        }
+
+        var ArticleComponent = function({article}){
+            let imageURL = 'https://static01.nyt.com/' + article.imageURL;
+
+            return(
+                <div className='article'>
+                    <a class='article-link' href={article.webURL}>
+                        <h2>{article.title}</h2>
+                        <img className='article-image' title={article.title} src={imageURL} />
+                        <p>{article.snippet}</p>
+                    </a>
+                </div> 
+            );
         }
 
         ReactDOM.render(
-            <MyComponent />,
+            <ArticlesGrid />,
             document.getElementById('container')
         );
 
