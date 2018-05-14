@@ -17,7 +17,7 @@ class Counter extends Component
     render() {
         return(
             <div className="App">
-                <span>{this.state.count}</span>
+                <span>{this.state.count}</span><br/>
                 <button onClick={this.handleClick} type='button'>click me</button>
             </div>
         );
