@@ -27,10 +27,24 @@ class DogsApp extends Component{
           this.getDogs();
       }
 
+      handleAddDog(newDog){
+        let dogs = this.state.dogsList;
+        dogs.push(newDog);
+        this.setState({dogsList:dogs});
+      }
+
+      handleDeleteDog(dogName){
+        let dogs = this.state.dogsList;
+        let index = dogs.findIndex(x => x.name === dogName);
+        dogs.splice(index, 1);
+        this.setState({dogsList:dogs});
+      }
+
       render(){
           return(
-            <div>
-                <p>Dogs are here </p>
+            <div className="app">
+                <DogsList onDeleteDog={this.handleDeleteDog.bind(this)}  dogs={this.state.dogsList} />
+                <AddDog onAddDog={this.handleAddDog.bind(this)} />
             </div>
           );
         }

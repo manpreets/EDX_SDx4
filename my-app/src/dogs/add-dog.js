@@ -4,4 +4,12 @@ class AddDog extends Component{
     constructor(props){
         super(props);
     }
+    render(){
+        return(
+            <div>AddDog here...</div>
+        );
+    }
+    
 }
+
+export default AddDog
