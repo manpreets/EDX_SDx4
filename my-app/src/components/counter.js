@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './App.css'
 
 class Counter extends Component
 {
@@ -16,13 +15,15 @@ class Counter extends Component
     }
 
     render() {
-        return
-        (
-            <div>
+        return(
+            <div className="App">
                 <span>{this.state.count}</span>
-                <button onClick={this.handleClick} text='Click me' />
+                <button onClick={this.handleClick} type='button'>click me</button>
             </div>
         );
-    }
-    
+
+
+    }    
 }
+
+export default Counter;
