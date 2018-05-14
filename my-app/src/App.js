@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Counter from './counter/counter'
+import DogsApp from './dogs/dogs-app'
 import './App.css';
 
 class App extends Component {
@@ -18,6 +19,13 @@ class App extends Component {
         <hr />
         <p>Counter is here</p>
         <Counter />
+        <hr />
+        <hr />
+
+        <hr />
+        <hr />
+        <p>Dogs list is here</p>
+        <DogsApp />
         <hr />
         <hr />
         
