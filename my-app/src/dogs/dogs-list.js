@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import DogItem from './dog-item'
 class DogsList extends Component{
-    constructor(props){
-        super(props);
+
+    deleteDog(name){
+        this.props.onDeleteDog()
     }
 
     render(){
-        return(
-            <div>
-                this.props.dogs.map(function(item){
-                    <DogItem itemDog={item} />
-                });
-            </div>
-        );
+        let dogItems;
+        if(this.props.dogs){
+            dogItems = this.props.dogs.map(dog => {
+                return (
+                  <DogItem onDelete={this.deleteDog.bind(this)} key={dog.name} dog={dog} />
+                );
+              });
+        
+            return(
+                <div className="Dogs">
+                    <h1>Good Dogs</h1>
+                    {dogItems}
+                </div>
+            );
+        }
+        else{
+            return(
+                <p>No dogs found in the list</p>
+            );            
+        }
     }
 }
 

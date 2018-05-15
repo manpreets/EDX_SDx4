@@ -5,7 +5,9 @@ import DogsList from './dogs-list'
 class DogsApp extends Component{
     constructor(props){
         super(props);
-        this.state = {dogsList:[]};
+        this.state = {
+          dogsList:[]
+        };
     }
     getDogs() {
         var defaultDogs = {dogs: [
@@ -20,7 +22,7 @@ class DogsApp extends Component{
             image: 'http://portland.ohsohandy.com/images/uploads/93796/m/nice-and-sweet-siberian-husky-puppies-for-free-adoption.jpg'
           },
         ]};
-        this.setState({dogsList:defaultDogs});
+        this.setState({defaultDogs});
       }
 
       componentWillMount(){
