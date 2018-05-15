@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DogItem from './dog-item'
-class DogsList extends Component{
+class Dogs extends Component{
 
     deleteDog(name){
         this.props.onDeleteDog()
@@ -30,4 +30,4 @@ class DogsList extends Component{
     }
 }
 
-export default DogsList
+export default Dogs

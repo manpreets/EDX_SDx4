@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Dogs from './components/Dogs';
-import AddDog from './components/AddDog';
-import './App.css';
+import Dogs from './dogs-list';
+import AddDog from './add-dog'
 
-class App extends Component {
+
+class DogsApp extends Component {
   constructor() {
     super();
     this.state = {
@@ -55,4 +55,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default DogsApp;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DogItem from './DogItem';
+import DogItem from './dog-item';
 
 class Dogs extends Component {
   deleteDog(name) {
