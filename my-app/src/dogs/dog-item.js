@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 
 class DogItem extends Component{
+    onDelete(name){
+        this.props.onDelete(name);
+        console.log("DogItem:",name);
+    }
+
     render(){
-        var thisDog = this.props.itemDog;
+        var thisDog = this.props.dog;
 
         if(!thisDog) {
             return(
                 <div> No dog found!</div>
             );
         }
+
 
         return(
             <ul className="dog">DogList here...<br/>
@@ -18,7 +24,7 @@ class DogItem extends Component{
                 <span>Name: {thisDog.name} </span>
                 <br/> 
                 <span>Breed: {thisDog.breed}</span>
-                <a href="#" onClick={thisDog.onDelete.bind(this, thisDog.name)}>X</a>
+                <a href="#" onClick={this.onDelete.bind(this, this.props.dog.name)}>X</a>
 
             </ul>
 

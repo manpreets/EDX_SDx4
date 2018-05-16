@@ -37,8 +37,9 @@ class DogsApp extends Component{
       }
 
       handleDeleteDog(dogName){
-        let dogs = this.state.dogsList;
+        let dogs = this.state.dogs;
         let index = dogs.findIndex(x => x.name === dogName);
+        console.log("Dogs app namd: " + dogName + " | index : " + index);
         dogs.splice(index, 1);
         this.setState({dogs:dogs});
       }
