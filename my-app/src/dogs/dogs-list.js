@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import DogItem from './dog-item'
 class Dogs extends Component{
 
-    deleteDog(){
-        this.props.onDelete(this);
+    deleteDog(name){
+        this.props.onDelete(name);
     }
 
     render(){
