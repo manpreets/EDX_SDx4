@@ -43,21 +43,24 @@ describe('Test suite for Dog app and it;s components',()=> {
   });
 
   it('submits dog and it is added at position 3',()=>{
-    var wrapper = mount(<DogsApp />);
+    const wrapper = mount(<DogsApp />);
     
-    var addDog = wrapper.find('AddDog');
+    const addDog = wrapper.find('AddDog');
 
-    addDog.find('#dogName').get(0).value = "Lola";
-    addDog.find('#imageURL').get(0).value = "https://s-media-cache-ak0.pinimg.com/originals/51/ae/30/51ae30b78696b33a64661fa3ac205b3b.jpg";
-    addDog.find('#dogBreed').get(0).value="Labrador";
+    addDog.find('#dogName').instance().value = "Lola";
+     addDog.find('#imageURL').instance().value = "https://s-media-cache-ak0.pinimg.com/originals/51/ae/30/51ae30b78696b33a64661fa3ac205b3b.jpg";
+     addDog.find('#dogBreed').instance().value="Labrador";
 
-    const form = addDog.find('form');
-    form.simulate('submit');
+     const form = addDog.find('form');
+     form.simulate('submit');
 
-    // expect(wrapper.find('Dogs')
-    //               .find('DogItem')).length(3);
+    //  expect(wrapper.find('Dogs')
+    //                .find('DogItem')).length(2);
+
+
+                   console.log(wrapper.state().dogs[2].name);
     
-    expect(wrapper.state.dogs.length == 3);
+    expect(wrapper.state().dogs[2].name == 'Lssola');
 
   });
 
