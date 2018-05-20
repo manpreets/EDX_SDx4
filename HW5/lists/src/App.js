@@ -23,7 +23,10 @@ class App extends Component {
       // Implement this function!
       let thisLists = this.state.lists;
       thisLists.push(s);
-      this.setState({lists:thisLists});
+      this.setState({lists:thisLists}, ()=>{
+        var newItem = {s:[]};
+        
+      });
   }
 
   /**
