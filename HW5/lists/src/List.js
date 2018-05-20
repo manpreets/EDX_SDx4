@@ -13,6 +13,7 @@ class List extends Component {
       return (
         <div id={name} key={uuidv4()}>
           <h3>{name} List</h3>
+<<<<<<< HEAD
 	<ul>
           {items.map(function(item) {
             return (
@@ -20,6 +21,15 @@ class List extends Component {
             )
           })}
 	</ul>
+=======
+          <ul>
+              {items.map(function(item) {
+                return (
+                  <li key={uuidv4()}><ListItem item={item} key={uuidv4()} /></li>
+                )
+              })}
+          </ul>
+>>>>>>> bd108c706ae858ecd3d26d03ad72d30516f35e7f
           <AddItem idName={name} addItem={this.props.addItem.bind(this)} />
         </div>
       )
