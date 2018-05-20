@@ -4,11 +4,6 @@ class AddList extends Component {
 
 
   handleSubmit(e) {
-<<<<<<< HEAD
-      e.preventDefault(); // this prevents the page from reloading -- do not delete this line!
-
-      // Implement the rest of this function here!
-=======
       // Implement the rest of this function here!
       if(this.refs.id.value === ''){
         alert('List name is required');
@@ -17,7 +12,6 @@ class AddList extends Component {
         this.props.addList(this.refs.id.value);
       }
       e.preventDefault(); // this prevents the page from reloading -- do not delete this line!
->>>>>>> bd108c706ae858ecd3d26d03ad72d30516f35e7f
   }
 
   render() {
