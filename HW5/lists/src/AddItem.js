@@ -13,6 +13,7 @@ class AddItem extends Component {
       e.preventDefault(); // this prevents the page from reloading -- do not delete this line!
 
       // Implement the rest of this function here!
+      this.props.addItem(this.refs.id.value, this.props.idName);
   }
     
 

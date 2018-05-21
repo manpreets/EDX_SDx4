@@ -23,9 +23,12 @@ class App extends Component {
       // Implement this function!
       let thisLists = this.state.lists;
       thisLists.push(s);
+
+      //Use callback to set the items when list name is added
       this.setState({lists:thisLists}, ()=>{
-        var newItem = {s:[]};
-        
+        var newItems = this.state.items;
+        newItems[s] = [];
+        this.setState({items:newItems});
       });
   }
 
@@ -37,8 +40,24 @@ class App extends Component {
    * to an array of the items in that list. After updating the "items" part of 
    * the state, this function  should then re-render this App component.
    */
-  handleAddItem(s) {
+  handleAddItem(itemName, listName) {
       // Implement this function!
+
+      //Get states items object
+      var newItems = this.state.items;
+
+      //Get particular item list array
+      var thisItemsList = newItems[listName];
+      
+      var newItem = {name : itemName};
+
+      //Add new item to the array
+      thisItemsList.push(newItem);
+      //Assign new array to list item object
+      newItems[listName] = thisItemsList;
+
+      //Update the state with new items object
+      this.setState({items:newItems});      
   }
 
   /**
