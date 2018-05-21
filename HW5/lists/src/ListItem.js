@@ -10,7 +10,7 @@ class ListItem extends Component {
     handleClick() {
     // Implement this function!
        this.setState({clicked:!this.state.clicked}, ()=>{
-         this.setState({color:this.state.clicked?'grey':'black'})
+         this.setState({color:this.state.clicked?'gray':'black'})
        });
     }
 
