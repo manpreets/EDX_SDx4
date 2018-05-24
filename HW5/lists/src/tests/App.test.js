@@ -41,7 +41,23 @@ describe('Test suit for HW 5 lists', () =>{
         expect(wrapper.find('AddList')).length(1);
     });
     
-    it('length of lists is changed to 1 after adding a list', () =>{
+    it('length of lists is changed to 1 after passing a list', () =>{
+        const wrapper = shallow(<Lists lists={["Sogs"]} items={[]} addItem={addListHelper} />);
+        expect(wrapper.find(<List name="Sogs" />));
+    });
+
+    it('After adding one list the count must be 1', ()=>{
+        const wrapper = mount(<App />);
+        var addList = wrapper.find('AddList');
+        addList.find('#newID').instance().value = 'DOGS';
+        addList.find('form').simulate('submit');
+        expect(wrapper.find('Lists').find('List'), 'There should be one List component within Lists').length(1);
+
+
 
     });
 });
+
+var addListHelper=  () => {
+    console.log("Item being added");
+}
