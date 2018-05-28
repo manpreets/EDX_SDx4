@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <style>
+            rect{ fill:darkred; }
+            rect:hover { fill:darkblue; } 
+            .chart text { fill:white;
+                          font-size:10px;
+                          text-anchor: end;
+            }
+        </style>
+            
+        </style>
+    </head>
+    <body>
+        <svg class="chart" height="200">
+            <g transform="translate(0,160)">
+                <rect width="39" height="40"/><text x="25" y="10">4</text>
+            </g>
+            <g transform="translate(40,70)">
+                <rect width="39" height="130"/><text x="25" y="10">13</text>
+            </g>
+            <g transform="translate(80,125)">
+                <rect width="39" height="75"/><text x="25" y="10">7.5</text>
+            </g>
+            <g transform="translate(120,30)">
+                <rect width="39" height="170"/><text x="25" y="10">17</text>
+            </g>
+        </svg>
+    </body>
+</html>

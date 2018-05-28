@@ -10,7 +10,7 @@
         var circle={
             x:200,
             y:200,
-            r:150,
+            r:151,
             fill:"cyan",
             stroke:"blue",
             strokeWidth:4
@@ -21,9 +21,11 @@
             .attr("cx", circle.x)
             .attr("cy", circle.y)
             .attr("r", circle.r)
-            .style("fill",circle.fill)
             .style("stroke", circle.stroke)
             .style("stroke-width", circle.strokeWidth)
+            .style("fill", () => { return circle.r > 150?"green":"red";
+            })
+
     </script>
 </body>
 </html>
