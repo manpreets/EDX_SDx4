@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <svg height="500" width="500">
+        <circle />
+    </svg>
+    <script>
+        var circle={
+            x:200,
+            y:200,
+            r:150,
+            fill:"cyan",
+            stroke:"blue",
+            strokeWidth:4
+        };
+
+        var svg= d3.select('svg');
+        svg.select('circle')
+            .attr("cx", circle.x)
+            .attr("cy", circle.y)
+            .attr("r", circle.r)
+            .style("fill",circle.fill)
+            .style("stroke", circle.stroke)
+            .style("stroke-width", circle.strokeWidth)
+    </script>
+</body>
+</html>

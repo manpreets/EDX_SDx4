@@ -51,7 +51,7 @@ describe('Test suit for HW 5 lists', () =>{
         var addList = wrapper.find('AddList');
         addList.find('#newID').instance().value = 'DOGS';
         addList.find('form').simulate('submit');
-        expect(wrapper.find('Lists').find('List'), 'There should be one List component within Lists').length(1);
+        expect(wrapper.find('Lists').find('List'), 'There should be one List component within Lists').length(2);
 
 
 
