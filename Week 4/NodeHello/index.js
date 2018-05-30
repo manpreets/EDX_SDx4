@@ -10,21 +10,35 @@ var app = express();
 //     res.end();
 // });
 
-app.use('/', (req,res) => {
-    var query = req.query;
-    var name = query.name;
 
-    res.status(200);
 
-    if(name){
-        res.write('Hello ' + name + '! How is out there?');
-    }
-    else{
-        res.write('Welcome Guest!');
-    }
+// app.use('/about', (req, res) =>{
+//     res.send('This is about us page!');
+// });
 
-    res.end();
+// app.use('/login', (req, res) => {
+//     res.send('This is login page!');
+// });
+
+app.use('/public',express.static('files'));
+
+app.use(/*default*/ (req, res)=>{
+    res.status(404).sendFile(__dirname + '/404.jpg');
 });
+
+// app.use('/', (req, res) => {
+//     var query = req.query;
+//     var name = query.name;
+//     res.status(200);
+//     if (name) {
+//         res.write('Hello ' + name + '! How is out there?');
+//     } else {
+//         res.write('Welcome Guest!');
+//     }
+//     res.end();
+// });
+
+
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');
